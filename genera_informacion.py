@@ -110,7 +110,6 @@ def obtiene_informacion(driver,infoUrl):
 
 def subir_archivo_a_s3(nombre_local, nombre_remoto):
     try:
-        load_dotenv()
         AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID")
         AWS_SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
         BUCKET_NAME = os.getenv("BUCKET_NAME")
