@@ -64,7 +64,7 @@ def obtiene_informacion(driver,infoUrl):
             enlaces.add(href.split("?")[0])  # limpiar parámetros
 
     # Mostrar resultados
-    print("________Eventos encontrados para",url,":_______")
+    print("________Eventos encontrados para",url,":_______", flush=True)
     for enlace in enlaces:
         driver.get(enlace)
         time.sleep(5)
@@ -86,11 +86,11 @@ def obtiene_informacion(driver,infoUrl):
 
             imagen_url = img.get_attribute("src")
 
-            print(f"🔹 Evento: {titulo}")
-            print(f"📅 Fecha: {fecha}")
-            print(f"🚗 Domicilio: {domicilio}")
-            print(f"📷 Img: {imagen_url}")
-            print(f"🔗 Link: {enlace}\n")
+            print(f"🔹 Evento: {titulo}",flush=True)
+            print(f"📅 Fecha: {fecha}",flush=True)
+            print(f"🚗 Domicilio: {domicilio}",flush=True)
+            print(f"📷 Img: {imagen_url}",flush=True)
+            print(f"🔗 Link: {enlace}\n",flush=True)
 
             #Se genera variable en donde se guarda la info del evento
             evento = {
