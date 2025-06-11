@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from dotenv import load_dotenv
 from botocore.exceptions import NoCredentialsError
 
+import tempfile
 import boto3
 import os
 import time
@@ -18,6 +19,12 @@ def inicializa_driver():
     options.add_argument("--headless")
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
+
+    # 👇 usar un directorio temporal único
+    temp_profile = tempfile.mkdtemp(prefix="selenium_")
+    options.add_argument(f"--user-data-dir={temp_profile}")
+
+    options.binary_location = "/snap/bin/chromium"
 
     driver = webdriver.Chrome(options=options)
 
