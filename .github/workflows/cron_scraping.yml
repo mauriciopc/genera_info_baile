@@ -13,11 +13,10 @@ jobs:
       - name: Clonar repositorio
         uses: actions/checkout@v3
 
-      - name: Instalar dependencias del sistema
+      - name: Instalar Google Chrome compatible
         run: |
-          sudo apt update
-          sudo apt install -y chromium-browser chromium-chromedriver
-          sudo ln -sf /usr/bin/chromium-browser /usr/bin/google-chrome
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
       - name: Instalar dependencias de Python
         run: |

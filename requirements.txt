@@ -1,3 +1,4 @@
 selenium
 boto3
 python-dotenv
+webdriver-manager

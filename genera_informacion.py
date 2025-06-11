@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
 from dotenv import load_dotenv
 from botocore.exceptions import NoCredentialsError
 
@@ -24,9 +25,9 @@ def inicializa_driver():
     temp_profile = tempfile.mkdtemp(prefix="selenium_")
     options.add_argument(f"--user-data-dir={temp_profile}")
 
-    options.binary_location = "/snap/bin/chromium"
+    options.binary_location = "/usr/bin/google-chrome"
 
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
     return driver
 
