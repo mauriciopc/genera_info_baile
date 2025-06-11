@@ -27,7 +27,9 @@ def inicializa_driver():
 
     options.binary_location = "/usr/bin/google-chrome"
 
-    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
+    service = Service(ChromeDriverManager().install())
+
+    driver = webdriver.Chrome(service=service, options=options)
 
     return driver
 
