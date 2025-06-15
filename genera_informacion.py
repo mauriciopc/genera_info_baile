@@ -69,9 +69,6 @@ def obtiene_informacion(driver,infoUrl):
         driver.get(enlace)
         time.sleep(5)
         
-        with open("debug_facebook.html", "w", encoding="utf-8") as f:
-            f.write(driver.page_source)
-
         try:
             try:
             # Obtener título del evento (h1 suele ser el nombre del evento)
