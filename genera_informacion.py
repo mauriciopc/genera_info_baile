@@ -20,13 +20,6 @@ def inicializa_driver():
     options.add_argument("--headless")
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
-    options.add_argument("--lang=es-MX")
-
-    # Forzar encabezado Accept-Language
-    prefs = {
-        "intl.accept_languages": "es-ES,es"
-    }
-    options.add_experimental_option("prefs", prefs)
 
     # 👇 usar un directorio temporal único
     temp_profile = tempfile.mkdtemp(prefix="selenium_")
@@ -44,9 +37,6 @@ def obtiene_informacion(driver,infoUrl):
 
     url = infoUrl["url"];
     driver.get(url)
-
-    with open("debug_facebook.html", "w", encoding="utf-8") as f:
-        f.write(driver.page_source)
 
     # Esperar a que cargue
     time.sleep(5)
@@ -130,8 +120,6 @@ def subir_archivo_a_s3(nombre_local, nombre_remoto):
 
         s3.upload_file(nombre_local, BUCKET_NAME, nombre_remoto)
         print(f"✅ Archivo '{nombre_local}' subido como '{nombre_remoto}' en el bucket '{BUCKET_NAME}'")
-        print("🌐 Idioma detectado:", driver.execute_script("return navigator.language"))
-
     except FileNotFoundError:
         print("❌ El archivo no se encontró.")
     except NoCredentialsError:
