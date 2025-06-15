@@ -52,7 +52,7 @@ def obtiene_informacion(driver,infoUrl):
     time.sleep(5)
 
     #Se valida que existen eventos proximos para la pagina
-    validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Próximos']]")
+    validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
     if(not(validaEventos)):
        return {}
     
@@ -84,7 +84,7 @@ def obtiene_informacion(driver,infoUrl):
             titulo = driver.find_element(By.XPATH, '//span[contains(@class, "html-span")]').text
 
             # Obtener fecha/hora (Facebook cambia a veces la estructura)
-            fecha = driver.find_element(By.XPATH, '//span[contains(text(), "de ")]').text
+            fecha = driver.find_element(By.XPATH, '//span[contains(text(), " at ")]').text
 
             # Obtener domicilio
             domicilio = driver.find_element(By.XPATH, '//span[contains(@class, "x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft x1j85h84")]').text
@@ -130,6 +130,7 @@ def subir_archivo_a_s3(nombre_local, nombre_remoto):
 
         s3.upload_file(nombre_local, BUCKET_NAME, nombre_remoto)
         print(f"✅ Archivo '{nombre_local}' subido como '{nombre_remoto}' en el bucket '{BUCKET_NAME}'")
+        print("🌐 Idioma detectado:", driver.execute_script("return navigator.language"))
 
     except FileNotFoundError:
         print("❌ El archivo no se encontró.")
