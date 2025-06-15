@@ -73,20 +73,24 @@ def obtiene_informacion(driver,infoUrl):
             f.write(driver.page_source)
 
         try:
+            try:
             # Obtener título del evento (h1 suele ser el nombre del evento)
-            titulo = driver.find_element(By.XPATH, '//span[contains(@class, "html-span")]').text
+                titulo = driver.find_element(By.XPATH, '//span[contains(@class, "html-span")]').text
+            except:
+                titulo = ""
 
+            try:
             # Obtener fecha/hora (Facebook cambia a veces la estructura)
-            fecha = driver.find_elements(By.XPATH, '//span[contains(text(), " at ")]')[0].text
+                fecha = driver.find_elements(By.XPATH, '//span[contains(text(), " at ")]')[0].text
+            except:
+                fecha = ""
 
-            # Obtener domicilio
-            domicilio = driver.find_element(By.XPATH, '//span[contains(@class, "x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft x1j85h84")]')
-
-            if not domicilio:
+            try:
+                # Obtener domicilio
+                domicilio = driver.find_element(By.XPATH, '//span[contains(@class, "x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft x1j85h84")]').text
+            except:
                 domicilio = ""
-            else:
-                domicilio = domicilio.text
-
+          
             # Obtener imagen del evento
             img = WebDriverWait(driver, 2).until(
                 EC.presence_of_element_located((By.XPATH, '//img[@data-imgperflogname="profileCoverPhoto"]'))
