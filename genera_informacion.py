@@ -22,6 +22,12 @@ def inicializa_driver():
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument("--lang=es-MX")
 
+    # Forzar encabezado Accept-Language
+    prefs = {
+        "intl.accept_languages": "es-ES,es"
+    }
+    options.add_experimental_option("prefs", prefs)
+
     # 👇 usar un directorio temporal único
     temp_profile = tempfile.mkdtemp(prefix="selenium_")
     options.add_argument(f"--user-data-dir={temp_profile}")
