@@ -20,6 +20,7 @@ def inicializa_driver():
     options.add_argument("--headless")
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
+    options.add_argument("--lang=es-MX")
 
     # 👇 usar un directorio temporal único
     temp_profile = tempfile.mkdtemp(prefix="selenium_")
@@ -42,7 +43,7 @@ def obtiene_informacion(driver,infoUrl):
         f.write(driver.page_source)
 
     # Esperar a que cargue
-    time.sleep(20)
+    time.sleep(5)
 
     #Se valida que existen eventos proximos para la pagina
     validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Próximos']]")
@@ -70,7 +71,7 @@ def obtiene_informacion(driver,infoUrl):
     print("________Eventos encontrados para",url,":_______", flush=True)
     for enlace in enlaces:
         driver.get(enlace)
-        time.sleep(20)
+        time.sleep(5)
 
         try:
             # Obtener título del evento (h1 suele ser el nombre del evento)
