@@ -38,6 +38,9 @@ def obtiene_informacion(driver,infoUrl):
     url = infoUrl["url"];
     driver.get(url)
 
+    with open("debug_facebook.html", "w", encoding="utf-8") as f:
+        f.write(driver.page_source)
+
     # Esperar a que cargue
     time.sleep(20)
 
