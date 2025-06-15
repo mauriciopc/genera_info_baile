@@ -84,9 +84,10 @@ def obtiene_informacion(driver,infoUrl):
 
             try:
                 # Obtener domicilio
-                domicilio = driver.find_element(By.XPATH, '//span[contains(@class, "x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i ' \
-                'x1fgarty x1943h6x xudqn12 x3x7a5m x1lkfr7t x1lbecb7 xo1l8bm xi81zsa x1yc453h")]//span').text
-            except:
+                domicilio = driver.find_element(By.XPATH, '//span[contains(@class, "x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x1lkfr7t x1lbecb7 xo1l8bm xi81zsa x1yc453h")]//span').text
+                print("Esto es lo que tiene el domicilio:",domicilio )
+            except e:
+                print("Existio un problema al obtener el domicilio,",e)
                 domicilio = ""
           
             # Obtener imagen del evento
