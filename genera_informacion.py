@@ -68,7 +68,10 @@ def obtiene_informacion(driver,infoUrl):
     for enlace in enlaces:
         driver.get(enlace)
         time.sleep(5)
-
+        
+        with open("debug_facebook.html", "w", encoding="utf-8") as f:
+            f.write(driver.page_source)
+            
         try:
             # Obtener título del evento (h1 suele ser el nombre del evento)
             titulo = driver.find_element(By.XPATH, '//span[contains(@class, "html-span")]').text
@@ -130,46 +133,6 @@ def subir_archivo_a_s3(nombre_local, nombre_remoto):
 urls = [{
             "id":1,
             "url":"https://www.facebook.com/mauricio.diaz.984991/events"
-        },
-        {
-            "id":2,
-            "url":"https://www.facebook.com/EsenciaBachataSocial/events"
-        },
-        {
-            "id":3,
-            "url":"https://www.facebook.com/Adondevamosabailarsociales/events/"
-        },
-        {
-            "id":4,
-            "url": "https://www.facebook.com/people/MasBachata/61550724543435/?sk=events"
-        },
-        {
-            "id":5,
-            "url":"https://www.facebook.com/people/Copacabana-Salsa-Bachata-Social/61553941332839/?sk=events"
-        },
-        {
-            "id":6,
-            "url":"https://www.facebook.com/PalladiumSalsaSocial/events"
-        },
-        {
-            "id":7,
-            "url":"https://www.facebook.com/SecretDanceMexico/events"  
-        },
-        {
-            "id":8,
-            "url":"https://www.facebook.com/elbabalu/events"  
-        },
-        {
-            "id":9,
-            "url":"https://www.facebook.com/people/Sensual-Sunset-BKS-Social/61560097226587/?sk=events"
-        },
-        {
-            "id":10,
-            "url":"https://www.facebook.com/profile.php?id=61572426942742&sk=events"
-        },
-        {
-            "id":11,
-            "url":"https://www.facebook.com/TardeadaBachaSalsa/events"
         }
     ]
 
