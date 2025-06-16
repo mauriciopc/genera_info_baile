@@ -157,12 +157,7 @@ def formatear_fecha(fecha_str):
     # Retornar la fecha en el formato deseado
     return fecha.strftime("%d/%m/%Y")
 
-def ordenar_eventos_por_fecha(eventos):
-    def convertir_fecha(fecha_str):
-        return datetime.strptime(fecha_str, "%d/%m/%Y")
-    
-    eventos_ordenados = sorted(eventos, key=lambda e: convertir_fecha(e["fecha_f"]))
-    return eventos_ordenados
+
 
 # URLs de la páginas de eventos
 urls = [{
@@ -211,7 +206,7 @@ urls = [{
         }
     ]
 
-infoPaginasAux=[]
+infoPaginas=[]
 
 #Se inicializa driver que controlara la navegacion 
 driver = inicializa_driver()
@@ -219,13 +214,11 @@ driver = inicializa_driver()
 for infoUrl in urls:
    infPagunaAux = obtiene_informacion(driver, infoUrl)
    if(infPagunaAux):
-       infoPaginasAux.append(infPagunaAux)
+       infoPaginas.append(infPagunaAux)
 
 #Se cierra driver
 driver.quit()
 
-#Se ordena paginas
-infoPaginas = ordenar_eventos_por_fecha(infoPaginasAux)
 
 nombre_archivo = "info_paginas.json"
 
