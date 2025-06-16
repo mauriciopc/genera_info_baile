@@ -7,6 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from botocore.exceptions import NoCredentialsError
 from datetime import datetime
 
+import re
 import locale
 import tempfile
 import boto3
@@ -81,6 +82,7 @@ def obtiene_informacion(driver,infoUrl):
             # Obtener fecha/hora (Facebook cambia a veces la estructura)
                 fecha = driver.find_elements(By.XPATH, '//span[contains(text(), " at ")]')[0].text
                 fecha_f = formatear_fecha(fecha)
+                fecha = traducir_fecha(fecha)
             except:
                 fecha = ""
                 fecha_f = ""
@@ -157,7 +159,41 @@ def formatear_fecha(fecha_str):
     # Retornar la fecha en el formato deseado
     return fecha.strftime("%d/%m/%Y")
 
+def traducir_fecha(fecha_str):
+    # Establecer locale en inglés para poder parsear
+    try:
+        locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
+    except locale.Error:
+        locale.setlocale(locale.LC_TIME, 'C')
 
+    # Quitar cualquier texto después del primer "at HH:MM", incluyendo rangos como "– 2:30 AM CST"
+    match = re.search(r"^(.*? at [0-9]{1,2}:[0-9]{2}\s?[APMapm\.]{2,4})", fecha_str)
+    if not match:
+        raise ValueError("No se pudo interpretar la fecha")
+
+    fecha_limpia = match.group(1)
+
+    # Convertir a datetime
+    fecha_dt = datetime.strptime(fecha_limpia, "%A, %B %d, %Y at %I:%M %p")
+
+    # Traducciones
+    dias = {
+        "Monday": "Lunes", "Tuesday": "Martes", "Wednesday": "Miércoles",
+        "Thursday": "Jueves", "Friday": "Viernes", "Saturday": "Sábado", "Sunday": "Domingo"
+    }
+    meses = {
+        "January": "Enero", "February": "Febrero", "March": "Marzo",
+        "April": "Abril", "May": "Mayo", "June": "Junio", "July": "Julio",
+        "August": "Agosto", "September": "Septiembre", "October": "Octubre",
+        "November": "Noviembre", "December": "Diciembre"
+    }
+
+    # Obtener partes
+    dia_en = fecha_dt.strftime("%A")
+    mes_en = fecha_dt.strftime("%B")
+    hora_es = fecha_dt.strftime("%H:%M")
+
+    return f"{dias[dia_en]}, {fecha_dt.day} de {meses[mes_en]} de {fecha_dt.year} a las {hora_es} hrs"
 
 # URLs de la páginas de eventos
 urls = [{
