@@ -2,7 +2,7 @@ name: Scraping con Selenium
 
 on:
   schedule:
-    - cron: '0 1 * * *'  # todos los días a las 1 AM UTC
+    - cron: '0 7 * * *'  # todos los días a las 1 AM UTC-6
   workflow_dispatch:     # permite ejecutarlo manualmente
 
 jobs:
