@@ -4,9 +4,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
-from dotenv import load_dotenv
 from botocore.exceptions import NoCredentialsError
+from datetime import datetime
 
+import locale
 import tempfile
 import boto3
 import os
@@ -79,8 +80,10 @@ def obtiene_informacion(driver,infoUrl):
             try:
             # Obtener fecha/hora (Facebook cambia a veces la estructura)
                 fecha = driver.find_elements(By.XPATH, '//span[contains(text(), " at ")]')[0].text
+                fecha_f = formatear_fecha(fecha)
             except:
                 fecha = ""
+                fecha_f = ""
 
             try:
                 # Obtener domicilio
@@ -99,6 +102,7 @@ def obtiene_informacion(driver,infoUrl):
 
             print(f"🔹 Evento: {titulo}",flush=True)
             print(f"📅 Fecha: {fecha}",flush=True)
+            print(f"📅 Fecha Formateada: {fecha_f}",flush=True)
             print(f"🚗 Domicilio: {domicilio}",flush=True)
             print(f"📷 Img: {imagen_url}",flush=True)
             print(f"🔗 Link: {enlace}\n",flush=True)
@@ -106,8 +110,9 @@ def obtiene_informacion(driver,infoUrl):
             #Se genera variable en donde se guarda la info del evento
             evento = {
                 "link":enlace,
-                "titulo": titulo,
-                "fecha": fecha,
+                "titulo":titulo,
+                "fecha":fecha,
+                "fecha_f":fecha_f,
                 "domicilio": domicilio,
                 "img":imagen_url
             }
@@ -135,6 +140,24 @@ def subir_archivo_a_s3(nombre_local, nombre_remoto):
         print("❌ El archivo no se encontró.")
     except NoCredentialsError:
         print("❌ No se encontraron las credenciales de AWS.")
+
+def formatear_fecha(fecha_str):
+    # Establecer el locale en inglés para que reconozca el mes en inglés
+    try:
+        locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
+    except locale.Error:
+        locale.setlocale(locale.LC_TIME, 'C')  # Opción alternativa en algunos sistemas
+
+    # Eliminar la zona horaria (por ejemplo, "CST")
+    partes = fecha_str.rsplit(' ', 1)
+    fecha_limpia = partes[0]
+
+    # Parsear el string al objeto datetime
+    fecha = datetime.strptime(fecha_limpia, "%A, %B %d, %Y at %I:%M %p")
+
+    # Retornar la fecha en el formato deseado
+    return fecha.strftime("%d/%m/%Y")
+
 
 
 # URLs de la páginas de eventos
