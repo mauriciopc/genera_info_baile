@@ -148,12 +148,11 @@ def formatear_fecha(fecha_str):
     except locale.Error:
         locale.setlocale(locale.LC_TIME, 'C')  # Opción alternativa en algunos sistemas
 
-    # Eliminar la zona horaria (por ejemplo, "CST")
-    partes = fecha_str.rsplit(' ', 1)
-    fecha_limpia = partes[0]
+    # Extraer solo la parte de la fecha antes de "at"
+    fecha_solamente = fecha_str.split(" at")[0].strip()
 
     # Parsear el string al objeto datetime
-    fecha = datetime.strptime(fecha_limpia, "%A, %B %d, %Y at %I:%M %p")
+    fecha = datetime.strptime(fecha_solamente, "%A, %B %d, %Y")
 
     # Retornar la fecha en el formato deseado
     return fecha.strftime("%d/%m/%Y")
