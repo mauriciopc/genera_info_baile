@@ -24,14 +24,16 @@ def inicializa_driver():
     options.add_argument('--disable-dev-shm-usage')
 
     # 👇 usar un directorio temporal único
-    temp_profile = tempfile.mkdtemp(prefix="selenium_")
-    options.add_argument(f"--user-data-dir={temp_profile}")
+    # temp_profile = tempfile.mkdtemp(prefix="selenium_")
+    # options.add_argument(f"--user-data-dir={temp_profile}")
 
-    options.binary_location = "/usr/bin/google-chrome"
+    # options.binary_location = "/usr/bin/google-chrome"
 
     service = Service(ChromeDriverManager().install())
 
     driver = webdriver.Chrome(service=service, options=options)
+
+    # driver = webdriver.Chrome(options=options)
 
     return driver
 
@@ -44,12 +46,8 @@ def obtiene_informacion(driver,infoUrl):
     time.sleep(5)
 
     #Se valida que existen eventos proximos para la pagina
-    validaEventos = WebDriverWait(driver, 20).until(
-        EC.presence_of_element_located((By.XPATH, "//a[.//span[text()='Upcoming']]"))
-    )
+    validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
     
-    # driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
-
     if(not(validaEventos)):
         validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Próximos']]")
         if(not(validaEventos)):
@@ -211,6 +209,10 @@ urls = [{
             "url":"https://www.facebook.com/mauricio.diaz.984991/events"
         }, 
         {
+            "id":2,
+            "url":"https://www.facebook.com/EsenciaBachataSocial/events"
+        },
+        {
             "id":3,
             "url":"https://www.facebook.com/Adondevamosabailarsociales/events/"
         },
@@ -229,6 +231,10 @@ urls = [{
         {
             "id":7,
             "url":"https://www.facebook.com/SecretDanceMexico/events"  
+        },
+        {
+            "id":8,
+            "url":"https://www.facebook.com/elbabalu/events"  
         },
         {
             "id":9,
@@ -263,6 +269,6 @@ nombre_archivo = "info_paginas.json"
 try:
     with open(nombre_archivo, "w") as archivo:
         json.dump(infoPaginas, archivo, indent=4)
-    subir_archivo_a_s3(nombre_archivo,nombre_archivo)
+    # subir_archivo_a_s3(nombre_archivo,nombre_archivo)
 except Exception as e:
     print(f"❌ Error al guardar archivo: {e}")
