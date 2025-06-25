@@ -207,47 +207,8 @@ def traducir_fecha(fecha_str):
 urls = [{
             "id":1,
             "url":"https://www.facebook.com/mauricio.diaz.984991/events"
-        }, 
-        {
-            "id":2,
-            "url":"https://www.facebook.com/EsenciaBachataSocial/events"
-        },
-        {
-            "id":3,
-            "url":"https://www.facebook.com/Adondevamosabailarsociales/events/"
-        },
-        {
-            "id":4,
-            "url": "https://www.facebook.com/people/MasBachata/61550724543435/?sk=events"
-        },
-        {
-            "id":5,
-            "url":"https://www.facebook.com/people/Copacabana-Salsa-Bachata-Social/61553941332839/?sk=events"
-        },
-        {
-            "id":6,
-            "url":"https://www.facebook.com/PalladiumSalsaSocial/events"
-        },
-        {
-            "id":7,
-            "url":"https://www.facebook.com/SecretDanceMexico/events"  
-        },
-        {
-            "id":8,
-            "url":"https://www.facebook.com/elbabalu/events"  
-        },
-        {
-            "id":9,
-            "url":"https://www.facebook.com/people/Sensual-Sunset-BKS-Social/61560097226587/?sk=events"
-        },
-        {
-            "id":10,
-            "url":"https://www.facebook.com/profile.php?id=61572426942742&sk=events"
-        },
-        {
-            "id":11,
-            "url":"https://www.facebook.com/TardeadaBachaSalsa/events"
         }
+
     ]
 
 infoPaginas=[]
