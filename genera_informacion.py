@@ -46,8 +46,10 @@ def obtiene_informacion(driver,infoUrl):
     #Se valida que existen eventos proximos para la pagina
     validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
     if(not(validaEventos)):
-       print("No se encontraron eventos para: ",url, flush=True)
-       return {}
+        validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Próximos']]")
+        if(not(validaEventos)):
+            print("No se encontraron eventos para: ",url, flush=True)
+            return {}
     
     #Se incializa variable para guardar informacion de los eventos
     infoPagina = {
