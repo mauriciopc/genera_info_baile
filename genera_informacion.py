@@ -40,6 +40,7 @@ def inicializa_driver():
 def obtiene_informacion(driver,infoUrl):
 
     url = infoUrl["url"];
+    driver = inicializa_driver()
     driver.get(url)
 
     # Esperar a que cargue
