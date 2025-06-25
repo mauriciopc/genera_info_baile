@@ -43,7 +43,7 @@ def obtiene_informacion(infoUrl):
     driver.get(url)
 
     # Esperar a que cargue
-    time.sleep(5)
+    time.sleep(10)
 
     #Se valida que existen eventos proximos para la pagina
     validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
