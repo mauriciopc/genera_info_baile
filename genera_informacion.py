@@ -41,7 +41,7 @@ def obtiene_informacion(driver,infoUrl):
     driver.get(url)
 
     # Esperar a que cargue
-    time.sleep(8)
+    time.sleep(5)
 
     #Se valida que existen eventos proximos para la pagina
     validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
@@ -49,6 +49,8 @@ def obtiene_informacion(driver,infoUrl):
         validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Próximos']]")
         if(not(validaEventos)):
             print("No se encontraron eventos para: ",url, flush=True)
+            with open("debug_facebook.html", "w", encoding="utf-8") as f:
+                f.write(driver.page_source)
             return {}
     
     #Se incializa variable para guardar informacion de los eventos

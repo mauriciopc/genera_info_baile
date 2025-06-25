@@ -41,3 +41,9 @@ jobs:
           BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
         run: |
           python3 -u genera_informacion.py
+      
+      - name: Subir HTML generado
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-debug
+          path: debug_facebook.html
