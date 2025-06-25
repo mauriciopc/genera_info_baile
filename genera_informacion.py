@@ -24,10 +24,9 @@ def inicializa_driver():
     options.add_argument('--disable-dev-shm-usage')
 
     # 👇 usar un directorio temporal único
-    # temp_profile = tempfile.mkdtemp(prefix="selenium_")
-    # options.add_argument(f"--user-data-dir={temp_profile}")
-
-    # options.binary_location = "/usr/bin/google-chrome"
+    temp_profile = tempfile.mkdtemp(prefix="selenium_")
+    options.add_argument(f"--user-data-dir={temp_profile}")
+    options.binary_location = "/usr/bin/google-chrome"
 
     service = Service(ChromeDriverManager().install())
 
