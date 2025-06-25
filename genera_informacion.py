@@ -31,9 +31,9 @@ def inicializa_driver():
 
     service = Service(ChromeDriverManager().install())
 
-    # driver = webdriver.Chrome(service=service, options=options)
+    driver = webdriver.Chrome(service=service, options=options)
 
-    driver = webdriver.Chrome(options=options)
+    # driver = webdriver.Chrome(options=options)
 
     return driver
 
