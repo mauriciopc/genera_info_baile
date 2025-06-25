@@ -138,6 +138,8 @@ def obtiene_informacion(driver,infoUrl):
             
         except Exception as e:
             print(f"⚠️ Error en {enlace}: {e}")
+        
+        driver.quit()
     return infoPagina
 
 def subir_archivo_a_s3(nombre_local, nombre_remoto):
@@ -223,7 +225,7 @@ urls = [{
 infoPaginas=[]
 
 #Se inicializa driver que controlara la navegacion 
-driver = inicializa_driver()
+# driver = inicializa_driver()
 
 for infoUrl in urls:
    infPagunaAux = obtiene_informacion(driver, infoUrl)
@@ -231,7 +233,7 @@ for infoUrl in urls:
        infoPaginas.append(infPagunaAux)
 
 #Se cierra driver
-driver.quit()
+# driver.quit()
 
 
 nombre_archivo = "info_paginas.json"
