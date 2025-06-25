@@ -216,10 +216,6 @@ urls = [{
         {
             "id":2,
             "url":"https://www.facebook.com/EsenciaBachataSocial/events"
-        },
-        {
-            "id":3,
-            "url":"https://www.facebook.com/Adondevamosabailarsociales/events/"
         }
     ]
 
