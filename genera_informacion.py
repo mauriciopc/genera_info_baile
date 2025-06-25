@@ -31,9 +31,9 @@ def inicializa_driver():
 
     service = Service(ChromeDriverManager().install())
 
-    driver = webdriver.Chrome(service=service, options=options)
+    # driver = webdriver.Chrome(service=service, options=options)
 
-    # driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(options=options)
 
     return driver
 
@@ -47,11 +47,11 @@ def obtiene_informacion(infoUrl):
     time.sleep(5)
 
     #Se valida que existen eventos proximos para la pagina
-    # validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
+    validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
 
-    validaEventos = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, "//a[.//span[text()='Upcoming']]"))
-    )
+    # validaEventos = WebDriverWait(driver, 10).until(
+    #     EC.presence_of_element_located((By.XPATH, "//a[.//span[text()='Próximos']]"))
+    # )
     
     
     if(not(validaEventos)):
@@ -218,7 +218,7 @@ urls = [{
         },
         {
             "id":2,
-            "url":"https://www.facebook.com/EsenciaBachataSocial/events"
+            "url":"https://www.facebook.com/PalladiumSalsaSocial/events"
         }
     ]
 
