@@ -39,7 +39,7 @@ def inicializa_driver():
 def obtiene_informacion(infoUrl):
 
     url = infoUrl["url"];
-    # driver = inicializa_driver()
+    driver = inicializa_driver()
     driver.get(url)
 
     # Esperar a que cargue
@@ -59,6 +59,7 @@ def obtiene_informacion(infoUrl):
             print("No se encontraron eventos para: ",url, flush=True)
             with open("debug_facebook.html", "w", encoding="utf-8") as f:
                 f.write(driver.page_source)
+            driver.quit()
             return {}
     
     #Se incializa variable para guardar informacion de los eventos
@@ -134,11 +135,11 @@ def obtiene_informacion(infoUrl):
 
             #Se guarda en el hash que contendra la informacion de todos los eventos de la pagina
             infoPagina["eventos"].append(evento)
-            
+            driver.quit()
         except Exception as e:
+            driver.quit()
             print(f"⚠️ Error en {enlace}: {e}")
         
-        # driver.quit()
     return infoPagina
 
 def subir_archivo_a_s3(nombre_local, nombre_remoto):
@@ -224,7 +225,7 @@ urls = [{
 infoPaginas=[]
 
 #Se inicializa driver que controlara la navegacion 
-driver = inicializa_driver()
+# driver = inicializa_driver()
 
 for infoUrl in urls:
    infPagunaAux = obtiene_informacion(infoUrl)
@@ -232,7 +233,7 @@ for infoUrl in urls:
        infoPaginas.append(infPagunaAux)
 
 #Se cierra driver
-driver.quit()
+# driver.quit()
 
 
 nombre_archivo = "info_paginas.json"
