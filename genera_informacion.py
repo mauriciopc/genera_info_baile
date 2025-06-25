@@ -46,7 +46,12 @@ def obtiene_informacion(driver,infoUrl):
     time.sleep(5)
 
     #Se valida que existen eventos proximos para la pagina
-    validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
+    # validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
+
+    validaEventos = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, "//a[.//span[text()='Upcoming']]"))
+    )
+    
     
     if(not(validaEventos)):
         validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Próximos']]")
@@ -207,8 +212,15 @@ def traducir_fecha(fecha_str):
 urls = [{
             "id":1,
             "url":"https://www.facebook.com/mauricio.diaz.984991/events"
+        },
+        {
+            "id":2,
+            "url":"https://www.facebook.com/EsenciaBachataSocial/events"
+        },
+        {
+            "id":3,
+            "url":"https://www.facebook.com/Adondevamosabailarsociales/events/"
         }
-
     ]
 
 infoPaginas=[]
