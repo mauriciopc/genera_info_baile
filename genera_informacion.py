@@ -37,7 +37,7 @@ def inicializa_driver():
 
     return driver
 
-def obtiene_informacion(driver,infoUrl):
+def obtiene_informacion(infoUrl):
 
     url = infoUrl["url"];
     driver = inicializa_driver()
@@ -228,7 +228,7 @@ infoPaginas=[]
 # driver = inicializa_driver()
 
 for infoUrl in urls:
-   infPagunaAux = obtiene_informacion(driver, infoUrl)
+   infPagunaAux = obtiene_informacion(infoUrl)
    if(infPagunaAux):
        infoPaginas.append(infPagunaAux)
 
