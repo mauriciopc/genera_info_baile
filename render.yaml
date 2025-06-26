@@ -1,0 +1,15 @@
+services:
+  - type: cron
+    name: script-eventos
+    repo: https://github.com/mauriciopc/genera_info_baile
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "python genera_informacion.py"
+    schedule: "0 7 * * *"  # Diario a las 1 AM CDMX
+    envVars:
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: BUCKET_NAME
+        sync: false
