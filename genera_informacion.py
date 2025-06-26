@@ -30,10 +30,16 @@ def inicializa_driver():
     options.add_argument('--disable-dev-shm-usage')
 
     if(PROD):
-        # 👇 usar un directorio temporal único
+        print("hola")
         options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36")
+        
+		# 👇 usar un directorio temporal único
         temp_profile = tempfile.mkdtemp(prefix="selenium_")
         options.add_argument(f"--user-data-dir={temp_profile}")
+        
+		# Define tamaño de ventana para evitar que se oculte contenido
+        options.add_argument("--window-size=1920,1080")
+
         options.binary_location = "/usr/bin/google-chrome"
 
         service = Service(ChromeDriverManager().install())
