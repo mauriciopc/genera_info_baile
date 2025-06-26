@@ -15,6 +15,7 @@ import boto3
 import os
 import time
 import json
+import gc
 
 load_dotenv()
 
@@ -30,6 +31,7 @@ def inicializa_driver():
 
     if(PROD):
         # 👇 usar un directorio temporal único
+        options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36")
         temp_profile = tempfile.mkdtemp(prefix="selenium_")
         options.add_argument(f"--user-data-dir={temp_profile}")
         options.binary_location = "/usr/bin/google-chrome"
@@ -290,16 +292,17 @@ infoPaginas=[]
 
 print("valor de prod",PROD)
 
-#Se inicializa driver que controlara la navegacion 
-driver = inicializa_driver()
+
 
 for infoUrl in urls:
-   infPagunaAux = obtiene_informacion(driver,infoUrl)
-   if(infPagunaAux):
-       infoPaginas.append(infPagunaAux)
-
-#Se cierra driver
-driver.quit()
+	#Se inicializa driver que controlara la navegacion 
+	driver = inicializa_driver()
+	infPagunaAux = obtiene_informacion(driver,infoUrl)
+	if(infPagunaAux):
+		infoPaginas.append(infPagunaAux)
+	#Se cierra driver
+	driver.quit()
+	gc.collect()
 
 
 nombre_archivo = "info_paginas.json"
