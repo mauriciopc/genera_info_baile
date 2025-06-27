@@ -302,14 +302,13 @@ print("valor de prod",PROD)
 for infoUrl in urls:
     #Se inicializa driver que controlara la navegacion 
     driver = inicializa_driver()
-    time.sleep(30)
     infPagunaAux = obtiene_informacion(driver,infoUrl)
     if(infPagunaAux):
         infoPaginas.append(infPagunaAux)
     #Se cierra driver
     driver.quit()
     gc.collect()
-    time.sleep(10)
+    time.sleep(5)
 
 
 nombre_archivo = "info_paginas.json"
