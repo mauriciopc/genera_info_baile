@@ -57,6 +57,9 @@ def obtiene_informacion(driver,infoUrl):
     #Se coloca sleep para esperar a que cargue la pagina
     time.sleep(5)
 
+    # 🖼️ Captura de pantalla para depuración
+    driver.save_screenshot(f"captura_{infoUrl['id']}.png")
+
     #Se valida que existen eventos proximos para la pagina
     if(PROD):
         validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
