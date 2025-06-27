@@ -301,8 +301,8 @@ print("valor de prod",PROD)
 
 for infoUrl in urls:
     #Se inicializa driver que controlara la navegacion 
-    time.sleep(30)
     driver = inicializa_driver()
+    time.sleep(30)
     infPagunaAux = obtiene_informacion(driver,infoUrl)
     if(infPagunaAux):
         infoPaginas.append(infPagunaAux)
