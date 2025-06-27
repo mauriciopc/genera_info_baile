@@ -55,10 +55,7 @@ def obtiene_informacion(driver,infoUrl):
     driver.get(url)
 
     #Se coloca sleep para esperar a que cargue la pagina
-    time.sleep(5)
-
-    # 🖼️ Captura de pantalla para depuración
-    driver.save_screenshot(f"captura_{infoUrl['id']}.png")
+    time.sleep(15)
 
     #Se valida que existen eventos proximos para la pagina
     if(PROD):
@@ -68,6 +65,8 @@ def obtiene_informacion(driver,infoUrl):
 
     if(not(validaEventos)):
         print("No se encontraron eventos para: ",url, flush=True)
+        # 🖼️ Captura de pantalla para depuración
+        driver.save_screenshot(f"captura_{infoUrl['id']}.png")
         return {}
     
     #Se incializa variable para guardar informacion de los eventos
@@ -310,7 +309,7 @@ for infoUrl in urls:
     #Se cierra driver
     driver.quit()
     gc.collect()
-    time.sleep(5)
+    time.sleep(10)
 
 
 nombre_archivo = "info_paginas.json"
