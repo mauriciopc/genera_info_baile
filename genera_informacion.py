@@ -54,7 +54,7 @@ def obtiene_informacion(driver,infoUrl):
     url = infoUrl["url"]
     driver.get(url)
 
-    # Scroll para cargar todos los eventos
+    #Se coloca sleep para esperar a que cargue la pagina
     time.sleep(5)
 
     #Se valida que existen eventos proximos para la pagina
