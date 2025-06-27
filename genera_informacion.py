@@ -56,7 +56,7 @@ def obtiene_informacion(driver,infoUrl):
     driver.get(url)
 
     #Se coloca sleep para esperar a que cargue la pagina
-    time.sleep(5)
+    time.sleep(10)
 
     # 🖼️ Captura de pantalla para depuración
     driver.save_screenshot(f"captura_{infoUrl['id']}.png")
