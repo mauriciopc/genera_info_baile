@@ -55,7 +55,7 @@ def obtiene_informacion(driver,infoUrl):
     driver.get(url)
 
     #Se coloca sleep para esperar a que cargue la pagina
-    time.sleep(15)
+    time.sleep(5)
 
     #Se valida que existen eventos proximos para la pagina
     if(PROD):
@@ -301,8 +301,8 @@ print("valor de prod",PROD)
 
 for infoUrl in urls:
     #Se inicializa driver que controlara la navegacion 
+    time.sleep(30)
     driver = inicializa_driver()
-    time.sleep(5)
     infPagunaAux = obtiene_informacion(driver,infoUrl)
     if(infPagunaAux):
         infoPaginas.append(infPagunaAux)
