@@ -30,7 +30,6 @@ def inicializa_driver():
     options.add_argument('--disable-dev-shm-usage')
 
     if(PROD):
-        print("hola")
         options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36")
         
 		# 👇 usar un directorio temporal único
@@ -298,10 +297,7 @@ infoPaginas=[]
 
 print("valor de prod",PROD)
 
-
-
 for infoUrl in urls:
-	time.sleep(10)
 	#Se inicializa driver que controlara la navegacion 
 	driver = inicializa_driver()
 	infPagunaAux = obtiene_informacion(driver,infoUrl)
