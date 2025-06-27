@@ -49,29 +49,13 @@ def inicializa_driver():
 
     return driver
 
-def scroll_hasta_el_final(driver, pausas=2, limite_intentos=10):
-    """Hace scroll hasta el fondo de la página detectando cuando ya no hay más contenido nuevo."""
-    last_height = driver.execute_script("return document.body.scrollHeight")
-    intentos = 0
-
-    while intentos < limite_intentos:
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(pausas)
-
-        new_height = driver.execute_script("return document.body.scrollHeight")
-        if new_height == last_height:
-            intentos += 1
-        else:
-            intentos = 0
-        last_height = new_height
-
 def obtiene_informacion(driver,infoUrl):
 
-    url = infoUrl["url"];
+    url = infoUrl["url"]
     driver.get(url)
 
     # Scroll para cargar todos los eventos
-    scroll_hasta_el_final(driver, pausas=2)
+    time.sleep(5)
 
     #Se valida que existen eventos proximos para la pagina
     if(PROD):
