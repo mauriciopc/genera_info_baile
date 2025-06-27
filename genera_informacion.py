@@ -55,7 +55,7 @@ def obtiene_informacion(driver,infoUrl):
     driver.get(url)
 
     #Se coloca sleep para esperar a que cargue la pagina
-    time.sleep(10)
+    time.sleep(5)
 
     # 🖼️ Captura de pantalla para depuración
     driver.save_screenshot(f"captura_{infoUrl['id']}.png")
@@ -301,14 +301,16 @@ infoPaginas=[]
 print("valor de prod",PROD)
 
 for infoUrl in urls:
-	#Se inicializa driver que controlara la navegacion 
-	driver = inicializa_driver()
-	infPagunaAux = obtiene_informacion(driver,infoUrl)
-	if(infPagunaAux):
-		infoPaginas.append(infPagunaAux)
-	#Se cierra driver
-	driver.quit()
-	gc.collect()
+    #Se inicializa driver que controlara la navegacion 
+    driver = inicializa_driver()
+    time.sleep(5)
+    infPagunaAux = obtiene_informacion(driver,infoUrl)
+    if(infPagunaAux):
+        infoPaginas.append(infPagunaAux)
+    #Se cierra driver
+    driver.quit()
+    gc.collect()
+    time.sleep(5)
 
 
 nombre_archivo = "info_paginas.json"
