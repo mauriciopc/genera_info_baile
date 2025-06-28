@@ -16,6 +16,7 @@ import os
 import time
 import json
 import gc
+import sys
 
 load_dotenv()
 
@@ -299,23 +300,27 @@ infoPaginas=[]
 
 print("valor de prod",PROD)
 
-for infoUrl in urls:
-    #Se inicializa driver que controlara la navegacion 
-    driver = inicializa_driver()
-    infPagunaAux = obtiene_informacion(driver,infoUrl)
-    if(infPagunaAux):
-        infoPaginas.append(infPagunaAux)
-    #Se cierra driver
-    driver.quit()
-    gc.collect()
-    time.sleep(5)
+infoUrl = {
+    "id": sys.argv[1],
+    "url": sys.argv[2]
+}
 
+print("Lo que se envia",infoUrl)
+
+driver = inicializa_driver()
+infPagunaAux = obtiene_informacion(driver,infoUrl)
+if(infPagunaAux):
+    infoPaginas.append(infPagunaAux)
+#Se cierra driver
+driver.quit()
+gc.collect()
+time.sleep(5)
 
 nombre_archivo = "info_paginas.json"
 
 try:
     with open(nombre_archivo, "w") as archivo:
         json.dump(infoPaginas, archivo, indent=4)
-    subir_archivo_a_s3(nombre_archivo,nombre_archivo)
+    # subir_archivo_a_s3(nombre_archivo,nombre_archivo)
 except Exception as e:
     print(f"❌ Error al guardar archivo: {e}")

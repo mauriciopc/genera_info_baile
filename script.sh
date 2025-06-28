@@ -1,0 +1,11 @@
+python3 -u genera_informacion.py 1 https://www.facebook.com/mauricio.diaz.984991/events
+python3 -u genera_informacion.py 2 https://www.facebook.com/EsenciaBachataSocial/events
+python3 -u genera_informacion.py 3 https://www.facebook.com/Adondevamosabailarsociales/events/
+python3 -u genera_informacion.py 4 https://www.facebook.com/people/MasBachata/61550724543435/?sk=events
+python3 -u genera_informacion.py 5 https://www.facebook.com/people/Copacabana-Salsa-Bachata-Social/61553941332839/?sk=events
+python3 -u genera_informacion.py 6 https://www.facebook.com/PalladiumSalsaSocial/events
+python3 -u genera_informacion.py 7 https://www.facebook.com/SecretDanceMexico/events
+python3 -u genera_informacion.py 8 https://www.facebook.com/elbabalu/events
+python3 -u genera_informacion.py 9 https://www.facebook.com/people/Sensual-Sunset-BKS-Social/61560097226587/?sk=events
+python3 -u genera_informacion.py 10 https://www.facebook.com/profile.php?id=61572426942742&sk=events
+python3 -u genera_informacion.py 11 https://www.facebook.com/TardeadaBachaSalsa/events
