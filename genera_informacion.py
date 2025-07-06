@@ -145,6 +145,14 @@ def obtiene_informacion(driver,infoUrl):
                 "img":imagen_url
             }
 
+            # Se reivsa que no existan eventos repetidos
+            if infoPagina["eventos"]:
+                listaEventos = [p["titulo"] for p in infoPagina["eventos"]]
+
+                if evento["titulo"] in listaEventos:
+                    continue
+
+            
             #Se guarda en el hash que contendra la informacion de todos los eventos de la pagina
             infoPagina["eventos"].append(evento)
         except Exception as e:
