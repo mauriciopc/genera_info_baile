@@ -37,7 +37,7 @@ def inicializa_driver():
 
         options.binary_location = "/opt/google/chrome/google-chrome"
 
-        service = Service("/usr/bin/chromedriver")
+        service = Service("/opt/chromedriver/chromedriver")
         service.command_line_args().append("--verbose")
         service.command_line_args().append("--log-path=/tmp/chromedriver.log")
 
