@@ -39,9 +39,7 @@ def inicializa_driver():
 		# Define tamaño de ventana para evitar que se oculte contenido
         options.add_argument("--window-size=1920,1080")
 
-        options.binary_location = "/usr/bin/google-chrome"
-
-        service = Service("/usr/bin/chromedriver")
+        service = Service()
 
         driver = webdriver.Chrome(service=service, options=options)
     else:
