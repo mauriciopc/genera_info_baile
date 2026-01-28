@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from botocore.exceptions import NoCredentialsError
+from botocore.config import Config
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -64,7 +65,7 @@ def obtiene_informacion(driver,infoUrl):
     if(not(validaEventos)):
         print("No se encontraron eventos para: ",url, flush=True)
         # 🖼️ Captura de pantalla para depuración
-        driver.save_screenshot(f"captura_{infoUrl['id']}.png")
+        # driver.save_screenshot(f"captura_{infoUrl['id']}.png")
         return {}
     
     #Se incializa variable para guardar informacion de los eventos
@@ -159,6 +160,12 @@ def obtiene_informacion(driver,infoUrl):
     return infoPagina
 
 def subir_archivo_a_s3(nombre_local, nombre_remoto):
+
+    config = Config(
+        retries={"max_attempts": 5},
+        connect_timeout=30,
+        read_timeout=60
+    )
     
     try:
         AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID")
