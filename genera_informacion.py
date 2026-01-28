@@ -53,7 +53,7 @@ def obtiene_informacion(driver,infoUrl):
     driver.get(url)
 
     #Se coloca sleep para esperar a que cargue la pagina
-    time.sleep(5)
+    time.sleep(10)
 
     #Se valida que existen eventos proximos para la pagina
     # if(PROD):
@@ -88,7 +88,7 @@ def obtiene_informacion(driver,infoUrl):
     print("________Eventos encontrados para",url,":_______", flush=True)
     for enlace in enlaces:
         driver.get(enlace)
-        time.sleep(5)
+        time.sleep(8)
         
         try:
             try:
