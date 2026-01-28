@@ -58,10 +58,13 @@ def obtiene_informacion(driver,infoUrl):
     #Se valida que existen eventos proximos para la pagina
     if(PROD):
         validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
+        print("Valida eventos: ",validaEventos,flush=True)
+        validaEventos2 = driver.find_elements(By.XPATH, "//a[.//span[text()='Próximos']]")
+        print("Valida eventos2: ",validaEventos2,flush=True)
     else:
         validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Próximos']]")
 
-    if(not(validaEventos)):
+    if(not(validaEventos) and not(validaEventos2)):
         print("No se encontraron eventos para: ",url, flush=True)
         # 🖼️ Captura de pantalla para depuración
         driver.save_screenshot(f"captura_{infoUrl['id']}.png")
