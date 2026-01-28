@@ -56,15 +56,12 @@ def obtiene_informacion(driver,infoUrl):
     time.sleep(5)
 
     #Se valida que existen eventos proximos para la pagina
-    if(PROD):
-        validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
-        print("Valida eventos: ",validaEventos,flush=True)
-        validaEventos2 = driver.find_elements(By.XPATH, "//a[.//span[text()='Próximos']]")
-        print("Valida eventos2: ",validaEventos2,flush=True)
-    else:
-        validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Próximos']]")
+    # if(PROD):
+    #     validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Upcoming']]")
+    # else:
+    validaEventos = driver.find_elements(By.XPATH, "//a[.//span[text()='Próximos']]")
 
-    if(not(validaEventos) and not(validaEventos2)):
+    if(not(validaEventos)):
         print("No se encontraron eventos para: ",url, flush=True)
         # 🖼️ Captura de pantalla para depuración
         driver.save_screenshot(f"captura_{infoUrl['id']}.png")
@@ -102,13 +99,13 @@ def obtiene_informacion(driver,infoUrl):
 
             try:
                 # Obtener fecha/hora (Facebook cambia a veces la estructura)
-                if(PROD):
-                    fecha = driver.find_elements(By.XPATH, '//span[contains(text(), " at")]')[0].text
-                    fecha_f = formatear_fecha_en(fecha)
-                    fecha = traducir_fecha(fecha)
-                else:
-                    fecha = driver.find_elements(By.XPATH, '//span[contains(text(), " a ")]')[0].text
-                    fecha_f = formatear_fecha_es(fecha)
+                # if(PROD):
+                #     fecha = driver.find_elements(By.XPATH, '//span[contains(text(), " at")]')[0].text
+                #     fecha_f = formatear_fecha_en(fecha)
+                #     fecha = traducir_fecha(fecha)
+                # else:
+                fecha = driver.find_elements(By.XPATH, '//span[contains(text(), " a ")]')[0].text
+                fecha_f = formatear_fecha_es(fecha)
             except Exception as e:
                 print("Existio un problema en obtener la fecha:",e,flush=True)
                 fecha = ""
