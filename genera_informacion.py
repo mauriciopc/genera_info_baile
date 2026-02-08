@@ -262,13 +262,14 @@ def traducir_fecha(fecha_str):
     return f"{dias[dia_en]}, {fecha_dt.day} de {meses[mes_en]} de {fecha_dt.year} a las {hora_es} hrs"
 
 # URLs de la páginas de eventos
-urls = [{
+urls = [
+       {
             "id":1,
-            "url":"https://www.facebook.com/mauricio.diaz.984991/events"
+            "url":"https://www.facebook.com/profile.php?id=61586029916811&sk=events"
         },
         {
             "id":2,
-            "url":"https://www.facebook.com/EsenciaBachataSocial/events"
+            "url":"https://www.facebook.com/mauricio.diaz.984991/events"
         },
         {
             "id":3,
@@ -292,28 +293,17 @@ urls = [{
         },
         {
             "id":8,
-            "url":"https://www.facebook.com/elbabalu/events"  
-        },
-        {
-            "id":9,
             "url":"https://www.facebook.com/people/Sensual-Sunset-BKS-Social/61560097226587/?sk=events"
         },
         {
-            "id":10,
-            "url":"https://www.facebook.com/profile.php?id=61572426942742&sk=events"
-        },
-        {
-            "id":11,
+            "id":9,
             "url":"https://www.facebook.com/TardeadaBachaSalsa/events"
         },
         {
-            "id":12,
+            "id":10,
             "url":"https://www.facebook.com/SAIztacalco/events"
         },
-        {
-            "id":13,
-            "url":"https://www.facebook.com/profile.php?id=61586029916811&sk=events"
-        }
+     
     ]
 
 infoPaginas=[]
