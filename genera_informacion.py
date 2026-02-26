@@ -285,7 +285,7 @@ urls = [
         },
         {
             "id":6,
-            "url":"https://www.facebook.com/PalladiumSalsaSocial/events"
+            "url":"https://www.facebook.com/groups/421093115009224/events"
         },
         {
             "id":7,
@@ -303,6 +303,10 @@ urls = [
             "id":10,
             "url":"https://www.facebook.com/SAIztacalco/events"
         },
+        {
+            "id":11,
+            "url":"https://www.facebook.com/RumbaCDMX/events"
+        }
      
     ]
 
